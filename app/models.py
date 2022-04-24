@@ -28,12 +28,12 @@ class Guidance(models.Model):
 
 
 class Photo(models.Model):
-    user = models.ForeignKey(User, default=True, on_delete=models.CASCADE) #settings.AUTH_USER_MODEL
-    guidance = models.ForeignKey(Guidance, null=True, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, default=True, on_delete=models.CASCADE)  # settings.AUTH_USER_MODEL
+    guidance = models.ForeignKey(Guidance, null=True, on_delete=models.SET_NULL, blank=True)
     title = models.CharField(max_length=255, verbose_name='наименование')
     content = models.TextField(verbose_name='описание')
     photo_file = models.ImageField(upload_to='images/', verbose_name='изображение')
-    slug = models.SlugField(max_length=255, verbose_name='краткое наименование')
+    slug = models.SlugField(max_length=50, verbose_name='краткое наименование', blank=True)
     diaphragm = models.CharField(max_length=10, default="", blank=True, verbose_name='диафрагма')
     exposure = models.CharField(max_length=10, default="", blank=True, verbose_name='выдержка')
     iso = models.CharField(max_length=10, default="", blank=True, verbose_name='ISO')

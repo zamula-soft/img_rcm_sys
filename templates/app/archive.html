@@ -1,0 +1,54 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block title %}Photo archive{% endblock %}
+
+{% block content%}
+
+<main>
+<section class="py-1 text-center container">
+    <div class="row py-lg-3">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Архив фотографий</h1>
+        <p class="lead text-muted">Какое-то описание...</p>
+      </div>
+    </div>
+  </section>
+
+
+  <div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+          {% for photo in photos %}
+
+        <div class="col">
+          <div class="card shadow-sm">
+            <img class ="img-fluid" src="{{photo.photo_file.url}}">
+
+            <div class="card-body">
+              <p class="card-text">{{ photo.title }}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+               <p>
+                    <!-- <a href="{{product.get_absolute_url}}" class="btn btn-primary my-2">{{photo.get_absolute_url}}</a>-->
+                    <a href="product/{{product.product_id}}" class="btn btn-primary my-2">Открыть</a>
+                    <a href="color/{{product.product_id}}" class="btn btn-secondary my-2">Дополнительно...</a>
+               </p>
+                </div>
+                <small class="text-muted">{{ photo.content }}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          {% endfor %}
+
+      </div>
+    </div>
+  </div>
+
+
+
+</main>
+{% endblock %}
