@@ -1,6 +1,6 @@
 from django.db import models
-from django.conf import settings
-
+# from django.conf import settings
+from django.contrib.auth.models import User
 
 class Tags(models.Model):
     name = models.CharField(max_length=20, db_index=True)
@@ -16,9 +16,9 @@ class Tags(models.Model):
 class Guidance(models.Model):
     guidance_id = models.IntegerField(primary_key=True, unique=True, db_index=True, auto_created=True)
     text = models.TextField(verbose_name='текст рекоммендации')
-    slug = models.SlugField(max_length=255, unique=True)
+    slug = models.SlugField(max_length=50, unique=True)
     tag = models.ForeignKey(Tags, on_delete=models.CASCADE)
-    prepopulated_fields = {'slug': ('tag',)}  # формирование slug
+    prepopulated_fields = {'slug': ('text',)}  # формирование slug
 
     class Meta:
         verbose_name_plural = 'Guidance'
@@ -28,8 +28,8 @@ class Guidance(models.Model):
 
 
 class Photo(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, default=True, on_delete=models.CASCADE)
-    guidance = models.ForeignKey(Guidance, on_delete=models.SET_NULL)
+    user = models.ForeignKey(User, default=True, on_delete=models.CASCADE) #settings.AUTH_USER_MODEL
+    guidance = models.ForeignKey(Guidance, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=255, verbose_name='наименование')
     content = models.TextField(verbose_name='описание')
     photo_file = models.ImageField(upload_to='images/', verbose_name='изображение')

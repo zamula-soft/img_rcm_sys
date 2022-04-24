@@ -1,3 +1,16 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Tags, Guidance, Photo
+
+
+@admin.register(Tags)
+@admin.register(Guidance)
+class GuidanceAdmin(admin.ModelAdmin):
+    list_display = ['slug']
+
+
+@admin.register(Photo)
+class PhotoAdmin(admin.ModelAdmin):
+    search_fields = ['title', 'slug']
+    list_display = ['title', 'published_date', 'raiting_light', 'raiting_composition', 'raiting_focus',
+                    'raiting_result']
