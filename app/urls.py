@@ -4,7 +4,7 @@ from . import views
 app_name = 'app'
 
 urlpatterns = [
-    path('', views.get_photos, name='get_photos'),
-    path('my', views.get_my_photos, name='get_my_photos'),
+    path('old', views.get_photos_old, name='get_photos_old'),
+    path('', views.get_my_photos, name='get_my_photos'),
 ]
 
