@@ -33,7 +33,7 @@ class Photo(models.Model):
     title = models.CharField(max_length=255, verbose_name='наименование')
     content = models.TextField(verbose_name='описание')
     photo_file = models.ImageField(upload_to='images/', verbose_name='изображение')
-    slug = models.SlugField(max_length=50, verbose_name='краткое наименование', blank=True)
+    slug = models.SlugField(max_length=50, verbose_name='краткое наименование')
     diaphragm = models.CharField(max_length=10, default="", blank=True, verbose_name='диафрагма')
     exposure = models.CharField(max_length=10, default="", blank=True, verbose_name='выдержка')
     iso = models.CharField(max_length=10, default="", blank=True, verbose_name='ISO')
@@ -46,7 +46,8 @@ class Photo(models.Model):
     raiting_result = models.DecimalField(decimal_places=0, max_digits=100, null=True, blank=True,
                                          verbose_name='итоговый рейтинг')
     published_date = models.DateTimeField(auto_now=False, auto_now_add=True)
-    prepopulated_fields = {'slug': ('title',)}  # формирование slug
+
+    prepopulated_fields = {'slug': ('title',), }  # формирование slug
 
     class Meta:
         verbose_name_plural = 'Photos'
