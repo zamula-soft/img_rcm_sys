@@ -1,6 +1,16 @@
 from django.db import models
-# from django.conf import settings
 from django.contrib.auth.models import User
+
+
+# Добавим фото в пользователей
+# class UserProfile(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     telegram = models.CharField(max_length=150, blank=True, null=True)
+#     avatar = models.ImageField(upload_to='images/avatars/', verbose_name='аватарки')
+#
+#     def __str__(self):
+#         return str(self.user)
+
 
 class Tags(models.Model):
     name = models.CharField(max_length=20, db_index=True)

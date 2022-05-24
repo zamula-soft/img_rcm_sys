@@ -25,7 +25,10 @@ SECRET_KEY = 'django-insecure-$xv)k=^pzw#)lc&6b-^7^049s3pbo#u_u22@c^s6717yg_ma@p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "localhost",
+    "localhost.com",
+]
 
 
 # Application definition
@@ -37,6 +40,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    # 'allauth.socialaccount.providers.vk',
+    # 'social_django',
     'app',
 ]
 
@@ -49,6 +59,49 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+AUTHENTICATION_BACKENDS = [
+    # 'social_core.backends.google.GoogleOAuth2',
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+# SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '997676277797-ptapa5cs30ka8u7ang1rb4fkbdtm44k5.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+#
+# LOGIN_URL = '/auth/login/google-oauth2/'
+#
+# LOGIN_REDIRECT_URL = '/'
+# LOGOUT_REDIRECT_URL = '/'
+#
+# SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+# If you set this to False, Django will make some optimizations so as not
+# to load the internationalization machinery.
+# USE_I18N = True
+
+SITE_ID = 1
+
+# Provider specific settings
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        # For each OAuth based provider, either add a ``SocialApp``
+        # (``socialaccount`` app) containing the required client
+        # credentials, or list them here:
+        'APP': {
+            'client_id': '997676277797-ptapa5cs30ka8u7ang1rb4fkbdtm44k5.apps.googleusercontent.com',
+            'secret': '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',
+            'key': 'AIzaSyA_atjpofB7h4zVNRYzpJX4UKQfN9qBtRs'
+        }
+,
+        # 'AUTH_PARAMS': {
+        #     'access_type': 'online',
+        # }
+        # ,
+    }
+}
 
 ROOT_URLCONF = 'core.urls'
 

@@ -6,5 +6,6 @@ app_name = 'app'
 urlpatterns = [
     path('old', views.get_photos_old, name='get_photos_old'),
     path('', views.get_my_photos, name='get_my_photos'),
-    path('photo/<slug:slug>/', views.photo_detail, name='photo_detail')
+    path('photo/<slug:slug>/', views.photo_detail, name='photo_detail'),
+    # path('accounts/profile/', views.UpdateCoverImageForm, name = 'profile'),
 ]
