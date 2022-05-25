@@ -125,10 +125,11 @@
                     <li class="border-bottom mb-0"><a class="nav-link-style d-flex align-items-center px-4 py-3" href="nft-account-notifications.html"><i class="ci-bell opacity-60 me-2"></i>Архив</a></li>
                     <li class="border-bottom mb-0">
                             {% if user.is_authenticated %}
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/accounts/logout"><i class="ci-sign-out opacity-60 me-2"></i>Выход</a>
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'account_logout' %}"><i class="ci-sign-out opacity-60 me-2"></i>Выход</a>
                             {% else %}
-                        <!-- url 'logout'  url 'social:begin' 'google-oauth2' https://django.fun/tutorials/oauth-authentication-django-social-auth/-->
-                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="/accounts/google/login/?process=login"><i class="ci-sign-out opacity-60 me-2"></i>Вход/Регистрация</a>
+                        <!-- url 'logout'  url 'social:begin' 'google-oauth2' https://django.fun/tutorials/oauth-authentication-django-social-auth/
+                         /accounts/google/login/?process=login-->
+                            <a class="nav-link-style d-flex align-items-center px-4 py-3" href="{% url 'account_login' %}"><i class="ci-sign-out opacity-60 me-2"></i>Вход/Регистрация</a>
                             {% endif %}
 
                         	{% if false or  user.is_authenticated %}
