@@ -19,7 +19,7 @@ def get_my_photos(request):
     return render(request, 'app/my_photos.html', {'photos': photos})
 
 
-def photo_detail(request, slug):
+def get_photo_detail(request, slug):
     context = {
         'photo': get_object_or_404(Photo, slug=slug)
         if request.user.is_authenticated else []
@@ -27,6 +27,14 @@ def photo_detail(request, slug):
 
     return render(request, 'app/photos/detail.html', context)
 
+
+# personal cabinet
+def get_personal_cabinet(request):
+    context = {
+        'photos': Photo.objects.all()
+        if request.user.is_authenticated else []
+    }
+    return render(request, 'app/personal_cabinet.html', context)
 
 # USERS
 # def profile(request, username):

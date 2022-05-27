@@ -1,0 +1,113 @@
+{% extends "../base_new.html" %}
+{% load static %}
+{% block title %} Photo archive {% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="my-3 my-md-5">
+        <div class="card hoverable">
+            <div class="card-content">
+                <div class="float-right">
+                    <!--<small class="text-muted">... 11, 2015 - ... 10, 2015</small>-->
+                    <span class="text-muted"><a href="/account">Вернуться в личный кабинет</a></span>
+                </div>
+                <span class="card-title">{{photo.title}}</span>
+                <p style="font-size:70%">Опубликовано {{photo.tutorial_published}}</p>
+                <small class="text-muted">Основные параметры: диафрагма: {{photo.diaphragm}} | ISO {{photo.iso}} |
+                    выдержка: {{photo.exposure}}</small>
+                <p>{{photo.tutorial_content|safe}}</p>
+                {% if photo.cover %}
+                <img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+                {% else %}
+                {% endif %}
+
+
+                <ul class="list-group">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <b>Итоговая оценка:</b>
+                        <span class="badge badge-primary badge-pill"
+                              style="color:#ffffff">{{photo.raiting_result}}</span>
+                    </li>
+                </ul>
+
+
+                <!-- photot -->
+                <div class="card-group">
+                    <div class="card">
+                        <a href="/HelloDjango/diplom/faces/img/0/{{ photo.cover }}" class="<thubnail>">
+                            <img src="/HelloDjango/diplom/faces/img/0/{{photo.cover}}" class="card-img-top" alt="...">
+                        </a>
+                        <small class="small">
+                            <hr>
+                        </small>
+                        <a href="/HelloDjango/diplom/faces/img/5/{{ photo.cover }}" class="<thubnail>">
+                            <img src="/HelloDjango/diplom/faces/img/5/{{photo.cover}}" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Определение фокуса</h5>
+                            <p class="card-text">Основной фокус данной фотографии смещен относительно точек согласно
+                                правилу третей: рекомендуем определить главнй объект съемки и на нем установить
+                                фокус. </p>
+                        </div>
+                        <div class="card-footer">
+                            Фокус:
+                            <span class="badge badge-primary badge-pill"
+                                  style="color:#ffffff">{{photo.raiting_focus}}</span>
+                        </div>
+                    </div>
+
+                    <div class="card"><a href="/HelloDjango/diplom/faces/img/1/{{ photo.cover }}" class="<thubnail>">
+                        <img src="/HelloDjango/diplom/faces/img/1/{{photo.cover}}" class="card-img-top" alt="..."> </a>
+                        <small class="small">
+                            <hr>
+                        </small>
+                        <a href="/HelloDjango/diplom/faces/img/3/{{ photo.cover }}" class="<thubnail>">
+                            <img src="/HelloDjango/diplom/faces/img/3/{{photo.cover}}" class="card-img-top" alt="...">
+                        </a>
+                        <div class="card-body">
+                            <h5 class="card-title">Оценка композиции</h5>
+                            <p class="card-text">Оценка композиции высокая, замечаний нет. На фотографии много объектов:
+                                рекомендуем выделять главный объект</p>
+                        </div>
+                        <div class="card-footer">
+                            Композиция:
+                            <span class="badge badge-primary badge-pill" style="color:#ffffff">{{photo.raiting_composition}}</span>
+                        </div>
+                    </div>
+
+                    <div class="card"><br>
+                        <a href="/HelloDjango/diplom/faces/img/2/{{ photo.cover }}" class="<thubnail>">
+
+
+                            <img src="/HelloDjango/diplom/faces/img/2/{{photo.cover}}" class="card-img-top" alt="...">
+                        </a>
+                        <small class="small">
+                            <hr>
+                        </small> <small class="small">
+                            <hr>
+                        </small>
+                        <a href="/HelloDjango/diplom/faces/img/4/{{ photo.cover }}" class="<thubnail>">
+                            <img src="/HelloDjango/diplom/faces/img/4/{{photo.cover}}" class="card-img-top" alt="...">
+                        </a>
+
+                        <div class="card-body">
+                            <h5 class="card-title">Светотеневой рисунок</h5>
+                            <p class="card-text">По анализу гистограммы видно, что основная часть фотографии находится в
+                                полутонах - не хватает светлых оттенков</p>
+                        </div>
+                        <div class="card-footer">
+                            Свет:
+                            <span class="badge badge-primary badge-pill"
+                                  style="color:#ffffff">{{photo.raiting_light}}</span>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

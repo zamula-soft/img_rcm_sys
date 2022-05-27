@@ -1,9 +1,8 @@
 {% extends "../base_new.html" %}
 {% load static %}
-{% block title %} Photo archive {% endblock %}
+{% block title %} Детальный просмотр {% endblock %}
 
 {% block content %}
-
 
 <!-- Content-->
 <section class="col-lg-9 pt-lg-4 pb-4 mb-3">
@@ -20,51 +19,107 @@
                 </ul>
             </div>
         </div>
+
+
         <!-- Items grid-->
-        <div class="row row-cols-md-3 row-cols-sm-2 row-cols-1 gy-sm-4 gy-3 gx-3 mb-4">
-
-
-            <!-- Product-->
-<!--<div class="bg-light shadow-lg rounded-3 px-4 py-lg-4 py-3 mb-5">
-          <div class="py-lg-3 py-2 px-lg-3">
-            <div class="row gy-4">-->
-              <div class="col-lg-6">
-                <div class="position-relative rounded-3 overflow-hidden mb-lg-4 mb-2"><img class="image-zoom" src={{photo.photo_file.url}} data-zoom={{photo.photo_file.url}} alt="Product image">
-                  <div class="image-zoom-pane"></div>
-                </div>
-                <div class="pt-2 text-lg-start text-center">
-                  <button class="btn btn-secondary rounded-pill btn-icon me-sm-3 me-2" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Add to Favorites" aria-label="Add to Favorites"><i class="ci-heart"></i></button>
-                  <button class="btn btn-secondary rounded-pill btn-icon me-sm-3 me-2" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Share" aria-label="Share"><i class="ci-share-alt"></i></button>
-                  <button class="btn btn-secondary rounded-pill btn-icon me-sm-3 me-2" type="button" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Flag" aria-label="Flag"><i class="ci-flag"></i></button>
-                </div>
-              </div>
-            <!--</div>
-          </div>
-  </div>-->
+        <div class="row row-cols-md-1 row-cols-sm-2 row-cols-1 gy-sm-4 gy-3 gx-3 mb-4">
 
             <!-- Product-->
             <div class="col mb-2">
                 <article class="card h-100 border-0 shadow">
-                    <div class="card-img-top position-relative overflow-hidden"><a class="d-block"
-                                                                                   href="/photo/{{photo.slug}}"><img
-                            src="{{photo.photo_file.url}}" alt="{{photo.title}}"></a>
+                    <div class="card-img-top position-relative overflow-hidden"><img
+                            src="{{photo.photo_file.url}}" alt="{{photo.title}}">
 
-                        <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
-                                data-bs-toggle="tooltip" data-bs-placement="left" title="Edit" style="margin: 12px;"><i
-                                class="ci-edit"></i></button>
+                        <!-- <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
+                                 data-bs-toggle="tooltip" data-bs-placement="left" title="Edit" style="margin: 12px;"><i
+                                 class="ci-edit"></i></button>-->
                     </div>
+
                     <div class="card-body">
                         <h3 class="product-title mb-2 fs-base"><a class="d-block text-truncate"
                                                                   href="nft-single-auction-live.html">{{photo.title}}</a>
                         </h3><span class="fs-sm text-muted">{{photo.content}}</span>
                         <div class="d-flex align-items-center flex-wrap">
-                            <!-- <h4 class="mt-1 mb-0 fs-base text-darker">0.5 ETH</h4><span class="mt-1 ms-1 fs-xs text-muted">(≈ $ 2,000.55)</span>-->
+                            <!-- <p style="font-size:70%">Опубликовано {{photo.tutorial_published}}</p>-->
+                            <!--<h4 class="mt-1 mb-0 fs-base text-darker">451</h4><span class="mt-1 ms-1 fs-xs text-muted">(Композиция: 150, Свет 200, Четкость 201)</span>-->
+
+                            <small class="text-muted">Основные параметры: диафрагма: {{photo.diaphragm}} | ISO
+                                {{photo.iso}}
+                                | выдержка: {{photo.exposure}}</small>
+                            <p>{{photo.tutorial_content|safe}}</p>
+                            {% if photo.cover %}
+                            <img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+                            {% else %}
+                            {% endif %}
+
                         </div>
                     </div>
+
+                    <div class="card-group my-3 my-md-5">
+                        <div class="card d-flex align-items-center flex-wrap">
+                            <div class="card-content">
+                                <img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Определение фокуса</h5>
+                                <span class="fs-sm text-muted">
+                                <p class="card-text">Основной фокус данной фотографии смещен относительно точек согласно
+                                    правилу третей: рекомендуем определить главнй объект съемки и на нем установить
+                                    фокус. </p></span>
+                            </div>
+                            <div class="card-footer mt-n1 py-0 border-0">
+                                <span class="mt-1 mb-0 fs-base text-darker">
+                                    Фокус: 2 {{photo.raiting_focus}}</span>
+                            </div>
+                        </div>
+
+                        <div class="card d-flex align-items-center flex-wrap">
+                            <div class="card-content">
+                                <img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Оценка композиции</h5>
+                                <span class="fs-sm text-muted">
+                                <p class="card-text">ООценка композиции высокая, замечаний нет. На фотографии много объектов:
+                                рекомендуем выделять главный объект</p></span>
+                            </div>
+                            <div class="card-footer mt-n1 py-0 border-0">
+                                <span class="mt-1 mb-0 fs-base text-darker">
+                                    Композиция: 2 {{photo.raiting_focus}}</span>
+                            </div>
+                        </div>
+
+                        <div class="card d-flex align-items-center flex-wrap">
+                            <div class="card-content">
+                                <img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Светотеневой рисунок</h5>
+                                <span class="fs-sm text-muted">
+                                <p class="card-text">По анализу гистограммы видно, что основная часть фотографии находится в
+                                полутонах - не хватает светлых оттенков. </p></span>
+                            </div>
+                            <div class="card-footer mt-n1 py-0 border-0">
+                                <span class="mt-1 mb-0 fs-base text-darker">
+                                    Свет: 2 {{photo.raiting_focus}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
                     <div class="card-footer mt-n1 py-0 border-0">
-                        <div class="d-flex align-items-center position-relative mb-1 py-3 border-top"><img
-                                class="me-2 rounded-circle" src="{% static '/img/avatar.jpg' %}" width="32"
-                                alt="Avatar"><a class="nav-link-style fs-sm stretched-link" href="nft-vendor.html">@zamula_anastasia</a>
+                        <div class="d-flex align-items-center position-relative mb-1 py-3 border-top">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b>Итоговая оценка:</b>
+                                    <span class="badge badge-primary badge-pill"
+                                          style="color:#ffffff">{{photo.raiting_result}}</span>
+                                </li>
+                            </ul>
+                            <!--                            <img-->
+                            <!--                                class="me-2 rounded-circle" src="{% static '/img/avatar.jpg' %}" width="32"-->
+                            <!--                                alt="Avatar"><a class="nav-link-style fs-sm stretched-link" href="nft-vendor.html">{{user.username}}</a>-->
                         </div>
                     </div>
                 </article>
@@ -72,10 +127,13 @@
 
 
         </div>
+
+
         <!-- Create new item-->
         <div class="d-flex flex-sm-row flex-column"><a class="btn btn-accent" href="/">Вернуться в каталог</a></div>
     </div>
 </section>
+
 
 {% endblock %}
 
