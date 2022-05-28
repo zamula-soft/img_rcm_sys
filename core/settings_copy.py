@@ -96,10 +96,10 @@ SOCIALACCOUNT_PROVIDERS = {
             'key': 'AIzaSyA_atjpofB7h4zVNRYzpJX4UKQfN9qBtRs'
         }
 ,
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-        ,
+        # 'AUTH_PARAMS': {
+        #     'access_type': 'online',
+        # }
+        # ,
     }
 }
 
@@ -118,8 +118,6 @@ SOCIAL_AUTH_PIPELINE = (
     'app.pipeline.update_user_social_data',
 )
 
-SOCIALACCOUNT_LOGIN_ON_GET=True
-# SOCIALACCOUNT_LOGOUT_ON_GET=True
 
 ROOT_URLCONF = 'core.urls'
 

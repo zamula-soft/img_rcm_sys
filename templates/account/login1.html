@@ -1,0 +1,57 @@
+{% extends "../app/base_new.html" %}
+
+{% load i18n %}
+{% load account %}
+{% load socialaccount %}
+
+{% block head_title %}{% trans "Авторизация" %}{% endblock %}
+
+{% block content %}
+{% get_providers as socialaccount_providers %}
+{% blocktrans with site.name as site_name %}
+<h1 class="h3 mb-sm-0 mb-2 pb-1 text-sm-start text-center">Добро пожаловать на {{ site_name }}</h1>
+{% endblocktrans %}
+
+
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Забыли пароль? " %}</a><br>
+  <button class="btn btn-outline-dark" type="submit">{% trans "Авторизация" %}</button>
+
+<div class="login-or">{% trans 'ИЛИ' %}</div>
+
+
+
+
+{% if socialaccount_providers %}
+<a href="{% provider_login_url 'google' %}">Login with Google</a>
+{% include "socialaccount/snippets/login_extra.html" %}
+<!--<div class="socialaccount_ballot">-->
+<!--  <ul class="socialaccount_providers">-->
+  <div class="row">
+  <div class="col-md-3">
+    <a class="btn btn-outline-dark" href="/accounts/google/login/?process=login" role="button" style="text-transform:none">
+      <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
+           src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png" />
+      Продолжить с Google
+    </a>
+  </div>
+</div>
+<!--      {% include "socialaccount/snippets/provider_list.html" with process="login" %}-->
+<!--  </ul>-->
+
+<!--</div>-->
+
+{% else %}
+<p>{% blocktrans %}Если у Вас нет учетной записи, пожалуйста, выполните регистрацию в Системе.
+<a href="{{ signup_url }}">Регистрация</a> first.{% endblocktrans %}</p>
+{% endif %}
+
+</form>
+
+{% endblock %}

@@ -43,7 +43,10 @@ def get_personal_cabinet(request):
     }
     return render(request, 'app/personal_cabinet.html', context)
 
-# USERS
+
+
+
+
 # def profile(request, username):
 #     try:
 #         user = User.objects.get(username=username)

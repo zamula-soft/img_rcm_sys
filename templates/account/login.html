@@ -1,46 +1,80 @@
-{% extends "account/base.html" %}
-11111111111111111111111111111111111111111111111111
-{% load i18n %}
-{% load account socialaccount %}
+{% extends "../app/base_new.html" %}
+{% load socialaccount %}
 
-{% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
 
-<h1>{% trans "Sign In" %}</h1>
+<div class="container text-dark mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-5 bg-grey p-3">
+            <!--                        <form class="form-signin">-->
+            <form class="login" method="POST" action="{% url 'account_login' %}">
+                <h1 class="h3 mb-sm-0 mb-2 pb-1 text-sm-start text-center">Добро пожаловать на сайт {{ site.name }}</h1>
 
-{% get_providers as socialaccount_providers %}
+                {% csrf_token %}
 
-{% if socialaccount_providers %}
-<p>{% blocktrans with site.name as site_name %}Please sign in with one
-of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
-for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+                {# Include the hidden fields #}
+                {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+                {% endfor %}
 
-<div class="socialaccount_ballot">
+                {{ form.non_field_errors }}
+<!--                <div class="fieldWrapper">-->
+<!--                    {{ form.subject.errors }}-->
+<!--                    <label for="id_login" class="sr-only">>Имя пользователя:</label>-->
+<!--                    <div class = "form-control">{{ form.login }}</div>-->
+<!--                </div>-->
 
-  <ul class="socialaccount_providers">
-    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
-  </ul>
 
-  <div class="login-or">{% trans 'or' %}</div>
 
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                {% endif %}
+
+
+                <label for="id_login" class="sr-only">Имя пользователя</label>
+                <input type="text" class="form-control" name="login" placeholder="Имя пользователя"
+                       autocomplete="username" required="" id="id_login">
+
+                <label for="id_password" class="sr-only">Пароль</label>
+                <input type="password" class="form-control" name="password" placeholder="Пароль"
+                       autocomplete="current-password" required="" id="id_password">
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Запомнить меня
+                    </label>
+                </div>
+                 <button class="btn btn-lg btn-accent btn-block" type="submit">Авторизация</button>
+
+
+                <a href="{% provider_login_url 'google' %}" class="btn btn btn-outline-dark btn-lg btn-block"
+                   role="button"
+                   aria-pressed="true">
+                    <img width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in"
+                         src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png"/>
+                    Продолжить с Google</a>
+
+                <br><br>
+                <a class="button secondaryAction" href="{% url 'account_reset_password' %}">Если забыли пароль?</a><br>
+                <br>
+                <p>Если у Вас нет учетной записи, пожалуйста, выполните
+                    <a href="{{ signup_url }}">регистрацию в Системе</a></p>
+
+
+            </form>
+        </div>
+    </div>
 </div>
 
-{% include "socialaccount/snippets/login_extra.html" %}
-
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
-{% endif %}
-
-<form class="login" method="POST" action="{% url 'account_login' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
-
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 {% endblock %}

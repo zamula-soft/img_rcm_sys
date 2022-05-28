@@ -31,15 +31,14 @@
                             <td class="text-center">
                                 <div class="float-left"
                                      style="background-image: url(/static/assets/demo/faces/female/26.jpg)">
-                                    <a href="http://zamula.beget.tech/all/08/" class="<thubnail>"> <img
-                                            class="img-thumbnail"
-                                            src="http://zamula.beget.tech/HelloDjango/media/images/b1.jpg"> </a>
+                                    <a class="<thubnail>" href="/photo/{{photo.slug}}"><img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}"></a>
+
                                 </div>
                             </td>
                             <td>
-                                <div>Бауманский КВН</div>
-                                <div class="small text-muted">
-                                    Выезд в Ступино
+                                <div>{{photo.title}}</div>
+                                <div class="small text-muted" style="-webkit-hyphens: auto;-moz-hyphens: auto;-ms-hyphens: auto;">
+                                  {{photo.content_}}
                                 </div>
                             </td>
                             <td>
@@ -74,8 +73,8 @@
                                     <a href="javascript:void(0)" data-toggle="dropdown" class="icon"><i
                                             class="fe fe-more-vertical"></i></a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="http://zamula.beget.tech/all/08/" class="dropdown-item"><i
-                                                class="dropdown-icon fe fe-tag"></i> Открыть фото </a>
+                                        <a href="/photo/{{photo.slug}}" class="dropdown-item"><i
+                                                class="dropdown-icon fe fe-tag"></i> Открыть </a>
                                         <div class="dropdown-divider"></div>
                                         <a href="javascript:void(0)" class="dropdown-item"><i
                                                 class="dropdown-icon fe fe-edit-2"></i> Посмотреть ответ эксперта </a>

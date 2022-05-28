@@ -10,6 +10,9 @@ from django.contrib.auth.models import User
 #
 #     def __str__(self):
 #         return str(self.user)
+class UserProfile(models.Model):
+  user = models.OneToOneField(User, on_delete=models.CASCADE)
+  picture = models.TextField(null=True, blank=True)
 
 
 class Tags(models.Model):

@@ -2,6 +2,11 @@
 {% load static %}
 {% block title %} Главная страница {% endblock %}
 
+
+{% load i18n %}
+{% load account socialaccount %}
+
+
 {% block content %}
 
 <!-- Content-->
@@ -11,14 +16,28 @@
         <div class="col-12">
             <div class="card">
                 <div class="table-responsive">
-                    Главная страница
-                    <div class="img-thumbnail rounded-rectangle position-relative flex-shrink-0" style="width: 60.375rem;"><img
-                        class="rounded-rectangle" src="{% static '/img/1page.png' %}" alt="Главная страница"></div>
+
+                    <div class="img-thumbnail rounded-rectangle position-relative flex-shrink-0" style="width: 60rem;">
+                        <img
+                                class="rounded-rectangle" src="{% static '/img/1page.png' %}" alt="Главная страница">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+    {% if not user.is_authenticated %}
+
+    <div class="d-flex flex-sm-row flex-column"><a class="btn btn-accent" href="/accounts/login">
+        Вход/Регистрация</a></div>
+
+
+    {% endif %}
+    <!--    <form class="login" method="POST" action="{% url 'account_login' %}">-->
+    <!--  {% csrf_token %}-->
+    <!--  {{ form.as_p }}-->
+    <!--  <button class="primaryAction" type="submit">{% trans "Вход / регистрация" %}</button>-->
+    <!--</form>-->
 
 
 </section>
