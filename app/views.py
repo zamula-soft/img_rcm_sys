@@ -13,6 +13,13 @@ def get_photos_old(request):
     photos = Photo.objects.all()
     return render(request, 'app/archive.html', {'photos': photos})
 
+def get_main_page(request):
+    context = {
+        # 'photo': get_object_or_404(Photo, slug=slug)
+        # if request.user.is_authenticated else []
+    }
+    return render(request, 'app/index.html', context)
+
 
 def get_my_photos(request):
     photos = Photo.objects.all()
