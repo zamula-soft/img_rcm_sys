@@ -1,0 +1,259 @@
+{% extends "../base_new.html" %}
+{% load static %}
+{% block title %} Добавить фото {% endblock %}
+
+{% block content %}
+
+<!-- Content-->
+<section class="col-lg-9 pt-lg-4 pb-4 mb-3">
+    <div class="pt-2 px-4 ps-lg-0 pe-xl-5" style="padding-right: 8px;padding-left: 40px">
+        <div class="d-flex flex-sm-row flex-column align-items-sm-center justify-content-between mb-4">
+            <h1 class="h3 mb-sm-0 mb-2 pb-1 text-sm-start text-center">Добавить фотографию</h1>
+            <div class="pb-1" style="overflow-x: auto;">
+                <!--                <ul class="nav nav-tabs nav-fill flex-nowrap text-nowrap mb-0">-->
+                <!--                    <li class="nav-item"><a class="nav-link active" href="#">Все<span class='opacity-70'>(5)</span></a>-->
+                <!--                    </li>-->
+                <!--                    <li class="nav-item"><a class="nav-link" href="#">Избранное <span class='opacity-70'>(3)</span></a>-->
+                <!--                    </li>-->
+                <!--                    <li class="nav-item"><a class="nav-link" href="#">Архив <span class='opacity-70'>(2)</span></a></li>-->
+                <!--                </ul>-->
+            </div>
+        </div>
+
+
+        <div class="mb-md-5 mb-4 pb-md-0 pb-2">
+            <h2 class="h5 mb-2 pb-1">Загрузить файл</h2>
+            <p class="mb-4 fs-sm">Разрешенные типы файлов: PNG, JPG, GIF, WEBP, MP3 или MP4. Максимальный размер: 100
+                Мб.</p>
+            <!-- Drag and drop file upload-->
+            <div class="file-drop-area">
+                <div class="file-drop-icon ci-cloud-upload"></div>
+                <span class="file-drop-message">Перетащите файл для загрузки</span>
+                <input class="file-drop-input" type="file">
+                <button class="file-drop-btn btn btn-outline-accent" type="button">Или выберите файл</button>
+            </div>
+        </div>
+
+
+        <!-- Items grid-->
+        <div class="row row-cols-md-1 row-cols-sm-2 row-cols-1 gy-sm-4 gy-3 gx-3 mb-4">
+
+            <!-- Product-->
+            <div class="col mb-2">
+                <article class="card h-100 border-0 shadow">
+                    <div class="card-img-top position-relative overflow-hidden"><img
+                            src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+
+                        <!-- <button class="btn-wishlist btn-sm position-absolute top-0 end-0" type="button"
+                                 data-bs-toggle="tooltip" data-bs-placement="left" title="Edit" style="margin: 12px;"><i
+                                 class="ci-edit"></i></button>-->
+                    </div>
+
+                    <div class="card-body">
+                        <h3 class="product-title mb-2 fs-base"><a class="d-block text-truncate"
+                                                                  href="nft-single-auction-live.html">{{photo.title}}</a>
+                        </h3><span class="fs-sm text-muted">{{photo.content}}</span>
+                        <div class="d-flex align-items-center flex-wrap">
+                            <!-- <p style="font-size:70%">Опубликовано {{photo.tutorial_published}}</p>-->
+                            <!--<h4 class="mt-1 mb-0 fs-base text-darker">451</h4><span class="mt-1 ms-1 fs-xs text-muted">(Композиция: 150, Свет 200, Четкость 201)</span>-->
+
+                            <small class="text-muted">Основные параметры: диафрагма: {{photo.diaphragm}} | ISO
+                                {{photo.iso}}
+                                | выдержка: {{photo.exposure}}</small>
+                            <p>{{photo.tutorial_content|safe}}</p>
+                            {% if photo.cover %}
+                            <img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+                            {% else %}
+                            {% endif %}
+
+                        </div>
+                    </div>
+
+                    <div class="card-group my-3 my-md-5">
+                        <div class="card d-flex align-items-center flex-wrap">
+                            <div class="card-content">
+                                <img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Определение фокуса</h5>
+                                <span class="fs-sm text-muted">
+                                <p class="card-text">Основной фокус данной фотографии смещен относительно точек согласно
+                                    правилу третей: рекомендуем определить главнй объект съемки и на нем установить
+                                    фокус. </p></span>
+                            </div>
+                            <div class="card-footer mt-n1 py-0 border-0">
+                                <span class="mt-1 mb-0 fs-base text-darker">
+                                    Фокус: 2 {{photo.raiting_focus}}</span>
+                            </div>
+                        </div>
+
+                        <div class="card d-flex align-items-center flex-wrap">
+                            <div class="card-content">
+                                <img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Оценка композиции</h5>
+                                <span class="fs-sm text-muted">
+                                <p class="card-text">ООценка композиции высокая, замечаний нет. На фотографии много объектов:
+                                рекомендуем выделять главный объект</p></span>
+                            </div>
+                            <div class="card-footer mt-n1 py-0 border-0">
+                                <span class="mt-1 mb-0 fs-base text-darker">
+                                    Композиция: 2 {{photo.raiting_focus}}</span>
+                            </div>
+                        </div>
+
+                        <div class="card d-flex align-items-center flex-wrap">
+                            <div class="card-content">
+                                <img class="img-thumbnail" src="{{photo.photo_file.url}}" alt="{{photo.title}}">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">Светотеневой рисунок</h5>
+                                <span class="fs-sm text-muted">
+                                <p class="card-text">По анализу гистограммы видно, что основная часть фотографии находится в
+                                полутонах - не хватает светлых оттенков. </p></span>
+                            </div>
+                            <div class="card-footer mt-n1 py-0 border-0">
+                                <span class="mt-1 mb-0 fs-base text-darker">
+                                    Свет: 2 {{photo.raiting_focus}}</span>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="card-footer mt-n1 py-0 border-0">
+                        <div class="d-flex align-items-center position-relative mb-1 py-3 border-top">
+                            <ul class="list-group">
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <b>Итоговая оценка:</b>
+                                    <span class="badge badge-primary badge-pill"
+                                          style="color:#ffffff">{{photo.raiting_result}}</span>
+                                </li>
+                            </ul>
+                            <!--                            <img-->
+                            <!--                                class="me-2 rounded-circle" src="{% static '/img/avatar.jpg' %}" width="32"-->
+                            <!--                                alt="Avatar"><a class="nav-link-style fs-sm stretched-link" href="nft-vendor.html">{{user.username}}</a>-->
+                        </div>
+                    </div>
+                </article>
+            </div>
+
+
+        </div>
+
+
+        <!-- ///-->
+
+        <div class="container">
+            <div class="my-3 my-md-5">
+                <div class="card hoverable">
+                    <div class="card-content">
+                        <div class="form-group">
+                            <div class="float-right"><span class="text-muted"><a href="/account">Вернуться в личный кабинет</a></span>
+                            </div>
+                            <span class="card-title">Оценка качества</span>
+
+                            <form method="post" enctype="multipart/form-data">
+
+                                {% csrf_token %}
+                                {{ form.as_p }}
+
+                                <button type="submit" class="btn btn-primary">Загрузить</button>
+
+                            </form>
+                            {% if post %}
+                            <a href="/HelloDjango/{{ post.cover.url }}"><img
+                                    src="/HelloDjango/{{ post.cover.url }}"></a>
+                            {% endif %}
+
+                            <!--<div class="col-xs-6 col-md-3">
+                                            <a href ="/HelloDjango/diplom/faces/fd{{ post.cover }}" class="<thubnail>">
+                                              <img class="img-thumbnail" src="/HelloDjango/diplom/faces/fd{{post.cover}}" alt="{{post.tutorial_content}}" >
+                                            </a>
+                                            <a href ="/HelloDjango/diplom/faces/{{ post.cover }}" class="<thubnail>">
+                                              <img class="img-thumbnail" src="/HelloDjango/diplom/faces/{{post.cover}}" alt="{{post.tutorial_content}}" >
+                                            </a>
+                            </div>
+                          -->
+                            <!-- photot -->
+                            <div class="card-group">
+                                <div class="card">
+                                    <a href="/HelloDjango/diplom/faces/img/0/{{ post.cover }}" class="<thubnail>">
+                                        <img src="/HelloDjango/diplom/faces/img/0/{{post.cover}}" class="card-img-top"
+                                             alt="...">
+                                    </a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Определение фокуса</h5>
+                                        <p class="card-text">Основной фокус данной фотографии смещен относительно точек
+                                            согласно правилу третей </p>
+                                    </div>
+                                    <div class="card-footer">
+                                        Фокус:
+                                        <span class="badge badge-primary badge-pill" style="color:#ffffff">{{photo.raiting_focus}}</span>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <a href="/HelloDjango/diplom/faces/img/1/{{ post.cover }}" class="<thubnail>">
+                                        <img src="/HelloDjango/diplom/faces/img/1/{{post.cover}}" class="card-img-top"
+                                             alt="..."></a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Оценка композиции</h5>
+                                        <p class="card-text">Основная часть композиции представлена....</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        Композиция:
+                                        <span class="badge badge-primary badge-pill" style="color:#ffffff">{{photo.raiting_composition}}</span>
+                                    </div>
+                                </div>
+                                <div class="card">
+                                    <a href="/HelloDjango/diplom/faces/img/2/{{ post.cover }}" class="<thubnail>">
+                                        <img src="/HelloDjango/diplom/faces/img/2/{{post.cover}}" class="card-img-top"
+                                             alt="..."></a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Светотеневой рисунок</h5>
+                                        <p class="card-text">Гистограмма...</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        Свет:
+                                        <span class="badge badge-primary badge-pill" style="color:#ffffff">{{photo.raiting_light}}</span>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <a href="/HelloDjango/diplom/faces/img/3/{{ post.cover }}" class="<thubnail>">
+                                        <img src="/HelloDjango/diplom/faces/img/3/{{post.cover}}" class="card-img-top"
+                                             alt="..."></a>
+                                    <div class="card-body">
+                                        <h5 class="card-title">Контурный анализ</h5>
+                                        <p class="card-text">Описание...</p>
+                                    </div>
+                                    <div class="card-footer">
+                                        Свет:
+                                        <span class="badge badge-primary badge-pill" style="color:#ffffff">{{photo.raiting_light}}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- --- -->
+
+
+        <!-- Create new item-->
+        <div class="d-flex flex-sm-row flex-column"><a class="btn btn-accent" href="/">Вернуться в каталог</a></div>
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+
+

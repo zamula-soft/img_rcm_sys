@@ -23,7 +23,7 @@ def get_main_page(request):
 
 def get_my_photos(request):
     photos = Photo.objects.all()
-    return render(request, 'app/my_photos.html', {'photos': photos})
+    return render(request, 'app/photos/my_photos.html', {'photos': photos})
 
 
 def get_photo_detail(request, slug):
@@ -44,7 +44,12 @@ def get_personal_cabinet(request):
     return render(request, 'app/personal_cabinet.html', context)
 
 
-
+def get_new_photo(request):
+    context = {
+        # 'photo': get_object_or_404(Photo, slug=slug)
+        # if request.user.is_authenticated else []
+    }
+    return render(request, 'app/photos/new_photo.html', context)
 
 
 # def profile(request, username):
